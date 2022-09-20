@@ -1,0 +1,5 @@
+## Append samples you want in your CSV to this file as resources ##
+resources:
+- conferences_v1alpha1_containerdays.yaml
+- conferences_v1alpha1_jcon.yaml
+#+kubebuilder:scaffold:manifestskustomizesamples

@@ -1,0 +1,24 @@
+# permissions for end users to edit containerdays.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: containerdays-editor-role
+rules:
+- apiGroups:
+  - conferences.helm.nvtc.io
+  resources:
+  - containerdays
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - conferences.helm.nvtc.io
+  resources:
+  - containerdays/status
+  verbs:
+  - get

@@ -1,0 +1,54 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: operators
+  name: dataserviceoperator
+rules:
+- apiGroups: ["java.nvtc.io"]
+  resources: ["dataservices", "dataservice"]
+  verbs: ["get", "watch", "list"]
+- apiGroups: ["*"]
+  resources: ["*"]
+  verbs: ["get", "watch", "list", "create", "delete", "deletecollection"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: dataserviceoperator-cluster
+rules:
+- apiGroups: ["apiextensions.k8s.io"]
+  resources: ["customresourcedefinitions"]
+  verbs: ["get", "list", "create"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: dataservice-operator
+  namespace: operators
+subjects:
+- kind: ServiceAccount
+  name: dataserviceoperator
+  namespace: operators
+roleRef:
+  kind: Role
+  name: dataserviceoperator
+  apiGroup: rbac.authorization.k8s.io
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: dataservice-operator-cluster
+subjects:
+- kind: ServiceAccount
+  name: dataserviceoperator
+  namespace: operators
+roleRef:
+  kind: ClusterRole
+  name: dataserviceoperator-cluster
+  apiGroup: rbac.authorization.k8s.io

@@ -1,0 +1,20 @@
+# permissions for end users to view containerdays.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: containerdays-viewer-role
+rules:
+- apiGroups:
+  - conferences.helm.nvtc.io
+  resources:
+  - containerdays
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - conferences.helm.nvtc.io
+  resources:
+  - containerdays/status
+  verbs:
+  - get

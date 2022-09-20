@@ -1,0 +1,8 @@
+apiVersion: java.nvtc.io/v1alpha1
+kind: DataService
+metadata:
+  name: dataservice-asdfgh
+spec:
+  replicas: 1
+  version: 1.18.0.0
+  dataId: 1asdfgh

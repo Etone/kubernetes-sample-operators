@@ -1,0 +1,32 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: dataservice-operator
+  name: dataservice-operator
+  namespace: operators
+spec:
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app: dataservice-operator
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: dataservice-operator
+    spec:
+      containers:
+      - image: coschapoehler/dataservice-operator:v0.0.1
+        imagePullPolicy: Always
+        name: dataservice-operator
+        resources: {}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      serviceAccountName: dataserviceoperator

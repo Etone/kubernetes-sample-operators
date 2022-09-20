@@ -1,0 +1,7 @@
+apiVersion: azure.microsoft.com/v1alpha1
+kind: ResourceGroup
+metadata:
+  name: cds22-operator
+  namespace: operators
+spec:
+  location: westus
